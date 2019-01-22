@@ -13,6 +13,6 @@ public interface TrackService {
     public boolean deleteTrack(int id) throws TrackNotFound;
     public Track updateTrack(Track track) throws TrackNotFound;
     public Optional<Track> getTrackById(int id) throws TrackNotFound;
-    public Track trackByName(String trackName) throws TrackNotFound;
+    public Track trackByName(String trackName)throws TrackNotFound;
 
 }

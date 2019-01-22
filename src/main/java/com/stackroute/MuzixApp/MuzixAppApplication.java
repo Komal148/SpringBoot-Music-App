@@ -24,12 +24,12 @@ public class MuzixAppApplication implements ApplicationListener<ContextRefreshed
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-		trackRepository.save(new Track(1,"abcde","Nosong"));
+		trackRepository.save(new Track(1,"IntoYou","ArianaGrande"));
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		trackRepository.save(new Track(2,"abcdef","Nosong"));
+		trackRepository.save(new Track(2,"Perfect","Edshereen"));
 	}
 }
 

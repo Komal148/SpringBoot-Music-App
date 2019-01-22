@@ -2,22 +2,31 @@ package com.stackroute.MuzixApp.controller;
 
 import com.stackroute.MuzixApp.Exceptions.TrackAlreadyExistException;
 import com.stackroute.MuzixApp.Exceptions.TrackNotFound;
+import com.stackroute.MuzixApp.domain.ExceptionInfoJSON;
 import com.stackroute.MuzixApp.domain.Track;
 import com.stackroute.MuzixApp.service.TrackService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@ControllerAdvice
 @RestController
 @RequestMapping(value = "api/v1")
 @Api(value="onlineMusicApp", description="Operations pertaining to Tracks in Muzix App")
-public class TrackController {
+public class TrackController extends ResponseEntityExceptionHandler {
 
     TrackService trackService;
 
@@ -75,7 +84,7 @@ public class TrackController {
         }
         catch( TrackNotFound ex)
         {
-            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
         }
         catch (Exception ex)
         {
@@ -95,7 +104,7 @@ public class TrackController {
         }
         catch (TrackNotFound ex)
         {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
         }
         catch (Exception ex)
         {
@@ -115,7 +124,7 @@ public class TrackController {
         }
         catch (TrackNotFound ex)
         {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
         }
         catch (Exception ex)
         {
@@ -135,7 +144,7 @@ public class TrackController {
         }
         catch (TrackNotFound ex)
         {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
         }
         catch (Exception ex)
         {
@@ -144,5 +153,10 @@ public class TrackController {
         return responseEntity;
     }
 
+    @ExceptionHandler(TrackNotFound.class)
+    public final ResponseEntity<ExceptionInfoJSON> handleAllExceptions(Exception ex, WebRequest request) {
+        ExceptionInfoJSON errorDetails = new ExceptionInfoJSON(request.getDescription(false), ex.getMessage(),new Date());
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }
