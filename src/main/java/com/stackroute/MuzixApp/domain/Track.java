@@ -1,16 +1,22 @@
 package com.stackroute.MuzixApp.domain;
 
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@PropertySource("classpath:application.properties")
 public class Track {
 
+
     @Id
-    int trackId;
-    String trackName;
-    String trackComments;
+    private int trackId;
+    private String trackName;
+    private String trackComments;
 
     public Track()
     {
@@ -56,4 +62,5 @@ public class Track {
                 ", trackComments='" + trackComments + '\'' +
                 '}';
     }
+
 }
