@@ -1,5 +1,7 @@
 package com.stackroute.MuzixApp.controller;
 
+import com.stackroute.MuzixApp.Exceptions.TrackAlreadyExistException;
+import com.stackroute.MuzixApp.Exceptions.TrackNotFound;
 import com.stackroute.MuzixApp.domain.Track;
 import com.stackroute.MuzixApp.service.TrackService;
 import io.swagger.annotations.Api;
@@ -35,9 +37,13 @@ public class TrackController {
             trackService.saveTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully Created", HttpStatus.CREATED);
         }
-        catch( Exception ex)
+        catch( TrackAlreadyExistException ex)
         {
             responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        catch (Exception ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
@@ -67,9 +73,13 @@ public class TrackController {
             trackService.updateTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully Updated", HttpStatus.CREATED);
         }
-        catch( Exception ex)
+        catch( TrackNotFound ex)
         {
             responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        catch (Exception ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
@@ -82,6 +92,10 @@ public class TrackController {
         try {
             trackService.deleteTrack(Integer.parseInt(id));
             responseEntity=new ResponseEntity<String>("Successfully deleted",HttpStatus.OK);
+        }
+        catch (TrackNotFound ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
         }
         catch (Exception ex)
         {
@@ -99,6 +113,10 @@ public class TrackController {
 
             return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);
         }
+        catch (TrackNotFound ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
         catch (Exception ex)
         {
             responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
@@ -114,6 +132,10 @@ public class TrackController {
         ResponseEntity responseEntity;
         try {
             responseEntity = new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
+        }
+        catch (TrackNotFound ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
         }
         catch (Exception ex)
         {

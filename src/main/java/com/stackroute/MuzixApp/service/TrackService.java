@@ -1,16 +1,18 @@
 package com.stackroute.MuzixApp.service;
 
+import com.stackroute.MuzixApp.Exceptions.TrackAlreadyExistException;
+import com.stackroute.MuzixApp.Exceptions.TrackNotFound;
 import com.stackroute.MuzixApp.domain.Track;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TrackService {
-    public Track saveTrack(Track track);
+    public Track saveTrack(Track track) throws TrackAlreadyExistException;
     public List<Track> getAllTrack();
-    public boolean deleteTrack(int id);
-    public Track updateTrack(Track track);
-    public Optional<Track> getTrackById(int id);
-    public Track trackByName(String trackName);
+    public boolean deleteTrack(int id) throws TrackNotFound;
+    public Track updateTrack(Track track) throws TrackNotFound;
+    public Optional<Track> getTrackById(int id) throws TrackNotFound;
+    public Track trackByName(String trackName) throws TrackNotFound;
 
 }
