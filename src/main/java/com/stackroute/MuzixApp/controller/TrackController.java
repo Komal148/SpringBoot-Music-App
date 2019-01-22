@@ -2,6 +2,8 @@ package com.stackroute.MuzixApp.controller;
 
 import com.stackroute.MuzixApp.domain.Track;
 import com.stackroute.MuzixApp.service.TrackService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1")
+@Api(value="onlineMusicApp", description="Operations pertaining to Tracks in Muzix App")
 public class TrackController {
 
     TrackService trackService;
@@ -22,6 +25,7 @@ public class TrackController {
         this.trackService=trackService;
     }
 
+    @ApiOperation(value = "Enter List of music")
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track)
     {
@@ -38,6 +42,7 @@ public class TrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "View a list of available music",response = Iterable.class)
     @GetMapping("track")
     public ResponseEntity<List<Track>> getAllUser()
     {
@@ -52,6 +57,7 @@ public class TrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "Updated List of Tracks")
     @PutMapping("track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track)
     {
@@ -68,6 +74,7 @@ public class TrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "Delete a Track")
     @DeleteMapping(value = "/track/{id}")
     public ResponseEntity<?> deleteTrack(@PathVariable String id)
     {
@@ -83,6 +90,7 @@ public class TrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "View a track by its Id")
     @GetMapping(value = "/track/{id}")
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String id)
     {
@@ -90,6 +98,22 @@ public class TrackController {
         try {
 
             return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);
+        }
+        catch (Exception ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
+    }
+
+//    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
+    @ApiOperation(value = "View an available Track")
+    @GetMapping(value = "/trackN/{trackName}")
+    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
+    {
+        ResponseEntity responseEntity;
+        try {
+            responseEntity = new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
         }
         catch (Exception ex)
         {

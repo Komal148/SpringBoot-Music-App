@@ -50,4 +50,9 @@ public class TrackServiceImpl implements TrackService{
         }
         return null;
     }
+
+    @Override
+    public Track trackByName(String trackName) {
+        return trackRepository.findByTrackName(trackName);
+    }
 }
