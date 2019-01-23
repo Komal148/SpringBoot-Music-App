@@ -20,7 +20,7 @@ import java.util.Optional;
 @Api(value="onlineMusicApp", description="Operations pertaining to Tracks in Muzix App")
 public class TrackController extends ResponseEntityExceptionHandler {
 
-    TrackService trackService;
+   private TrackService trackService;
 
     @Autowired
     public TrackController(TrackService trackService)
@@ -36,21 +36,6 @@ public class TrackController extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistException
     {
         return new ResponseEntity<Track>(trackService.saveTrack(track),HttpStatus.OK);
-//        ResponseEntity responseEntity;
-//        try
-//        {
-//            trackService.saveTrack(track);
-//            responseEntity=new ResponseEntity<String>("Successfully Created", HttpStatus.CREATED);
-//        }
-//        catch( TrackAlreadyExistException ex)
-//        {
-//            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-//        }
-//        catch (Exception ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-//        }
-//        return responseEntity;
     }
     /*
     Retrieve all tracks method
@@ -60,15 +45,6 @@ public class TrackController extends ResponseEntityExceptionHandler {
     public ResponseEntity<List<Track>> getAllUser() throws TrackNotFound
     {
         return new ResponseEntity<List<Track>>(trackService.getAllTrack(),HttpStatus.OK);
-        /*ResponseEntity responseEntity;
-        try {
-            responseEntity = new ResponseEntity<List<Track>>(trackService.getAllTrack(),HttpStatus.OK);
-        }
-        catch (Exception ex)
-        {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;*/
     }
 
     /*
@@ -79,21 +55,7 @@ public class TrackController extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> updateTrack(@RequestBody Track track) throws TrackNotFound {
         trackService.updateTrack(track);
         return new ResponseEntity<String>("Successfully Updated", HttpStatus.CREATED);
-        /*ResponseEntity responseEntity;
-        try
-        {
-            trackService.updateTrack(track);
-            responseEntity=new ResponseEntity<String>("Successfully Updated", HttpStatus.CREATED);
-        }
-        catch( TrackNotFound ex)
-        {
-            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
-        }
-        catch (Exception ex)
-        {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;*/
+
     }
     /*
     Delete a Track given by Id
@@ -105,20 +67,7 @@ public class TrackController extends ResponseEntityExceptionHandler {
     {
         trackService.deleteTrack(Integer.parseInt(id));
         return new ResponseEntity<String>("Successfully deleted",HttpStatus.OK);
-        /*ResponseEntity responseEntity;
-        try {
-            trackService.deleteTrack(Integer.parseInt(id));
-            responseEntity=new ResponseEntity<String>("Successfully deleted",HttpStatus.OK);
-        }
-        catch (TrackNotFound ex)
-        {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
-        }
-        catch (Exception ex)
-        {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;*/
+
     }
     /*
     Get Track by Id Method
@@ -128,22 +77,7 @@ public class TrackController extends ResponseEntityExceptionHandler {
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String id) throws TrackNotFound
     {
 
-       return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);
-//        ResponseEntity responseEntity;
-//        try {
-//
-//            return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);
-//        }
-//        catch (TrackNotFound ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
-//        }
-//        catch (Exception ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-//        }
-//        return responseEntity;
-    }
+       return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);}
 
     /*
     Get Track by track name method
@@ -155,20 +89,6 @@ public class TrackController extends ResponseEntityExceptionHandler {
     public ResponseEntity<Track> getByTrackName(@PathVariable String trackName) throws TrackNotFound
     {
         return new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
-
-//        ResponseEntity responseEntity;
-//        try {
-//            responseEntity = new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
-//        }
-//        catch (TrackNotFound ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
-//        }
-//        catch (Exception ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-//        }
-//        return responseEntity;
     }
 
 }

@@ -14,7 +14,7 @@ public class HeadExceptionController {
 
     //Handling Exception of Track Not Found
     @ExceptionHandler(TrackNotFound.class)
-    @ResponseStatus(value = HttpStatus.CONFLICT)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public @ResponseBody ErrorClass handleTracknotFoundException(final TrackNotFound e, final HttpServletRequest request){
         ErrorClass errorClass= new ErrorClass();
         errorClass.setErrormessage(e.getMessage());
