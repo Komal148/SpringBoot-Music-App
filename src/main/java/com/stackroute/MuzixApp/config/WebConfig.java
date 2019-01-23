@@ -17,9 +17,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+//Configuration Class
 @Configuration
 @EnableSwagger2
 public class WebConfig extends WebMvcConfigurationSupport {
+
+    //Docket API Bean
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -28,6 +31,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 .build();
 
     }
+
+    /*
+    This will add the resource handlers on swagger
+     */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
@@ -36,6 +43,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+    /*
+    This method will give us the meta Data about our application in database
+     */
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
@@ -47,6 +57,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 .contact(new Contact("Komal Rani", "https://springframework.guru/about/", "komalr984@gmail.com"))
                 .build();
     }
+
+    /*
+    This method will enable h2 console.
+     */
     @Bean
     ServletRegistrationBean h2ServletRegistration()
     {

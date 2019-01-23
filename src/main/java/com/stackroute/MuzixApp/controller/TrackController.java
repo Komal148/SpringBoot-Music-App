@@ -28,6 +28,9 @@ public class TrackController extends ResponseEntityExceptionHandler {
         this.trackService=trackService;
     }
 
+    /*
+    Save Track
+     */
     @ApiOperation(value = "Enter List of music")
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistException
@@ -49,7 +52,9 @@ public class TrackController extends ResponseEntityExceptionHandler {
 //        }
 //        return responseEntity;
     }
-
+    /*
+    Retrieve all tracks method
+     */
     @ApiOperation(value = "View a list of available music",response = Iterable.class)
     @GetMapping("track")
     public ResponseEntity<List<Track>> getAllUser() throws TrackNotFound
@@ -66,6 +71,9 @@ public class TrackController extends ResponseEntityExceptionHandler {
         return responseEntity;*/
     }
 
+    /*
+    Update Tracks method
+     */
     @ApiOperation(value = "Updated List of Tracks")
     @PutMapping("track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track) throws TrackNotFound {
@@ -87,6 +95,9 @@ public class TrackController extends ResponseEntityExceptionHandler {
         }
         return responseEntity;*/
     }
+    /*
+    Delete a Track given by Id
+     */
 
     @ApiOperation(value = "Delete a Track")
     @DeleteMapping(value = "/track/{id}")
@@ -109,7 +120,9 @@ public class TrackController extends ResponseEntityExceptionHandler {
         }
         return responseEntity;*/
     }
-
+    /*
+    Get Track by Id Method
+     */
     @ApiOperation(value = "View a track by its Id")
     @GetMapping(value = "/track/{id}")
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String id) throws TrackNotFound
@@ -132,7 +145,11 @@ public class TrackController extends ResponseEntityExceptionHandler {
 //        return responseEntity;
     }
 
-//    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
+    /*
+    Get Track by track name method
+     */
+
+    //    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
     @ApiOperation(value = "View an available Track")
     @GetMapping(value = "/trackN/{trackName}")
     public ResponseEntity<Track> getByTrackName(@PathVariable String trackName) throws TrackNotFound

@@ -20,6 +20,8 @@ public class TrackServiceImpl implements TrackService{
     {
         this.trackRepository=trackRepository;
     }
+
+    //Save Track
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistException {
         if( trackRepository.existsById(track.getTrackId()))
@@ -34,6 +36,7 @@ public class TrackServiceImpl implements TrackService{
         return savedTrack;
     }
 
+    //Get All Track
     @Override
     public List<Track> getAllTrack() throws TrackNotFound {
         List<Track> trackList = trackRepository.findAll();
@@ -44,6 +47,7 @@ public class TrackServiceImpl implements TrackService{
         return trackRepository.findAll();
     }
 
+    //delete track by Id
     @Override
     public boolean deleteTrack(int id) throws TrackNotFound {
 
@@ -55,6 +59,7 @@ public class TrackServiceImpl implements TrackService{
         return true;
     }
 
+    //Update List of Tracks
     @Override
     public Track updateTrack(Track track) throws TrackNotFound{
         if( !trackRepository.existsById(track.getTrackId()))
@@ -65,6 +70,7 @@ public class TrackServiceImpl implements TrackService{
         return updateTrack;
     }
 
+    // Retrieve Track by Id
     @Override
     public Optional<Track> getTrackById(int id) throws TrackNotFound{
 
@@ -78,6 +84,7 @@ public class TrackServiceImpl implements TrackService{
         }
     }
 
+    // Retrieve Track by Track name
     @Override
     public Track trackByName(String trackName) throws TrackNotFound {
         if( trackRepository.findByTrackName(trackName) == null )

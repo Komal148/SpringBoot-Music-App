@@ -15,6 +15,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+/*
+In this class Application Listener,Command Line Runner,@Value ,@PropertySource is used.
+ */
 
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
@@ -38,12 +41,14 @@ public class MuzixAppApplication implements /* ApplicationListener<ContextRefres
 		SpringApplication.run(MuzixAppApplication.class, args);
 	}
 
+	//Appliction Event method
 
 	/*@Override
 	public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 		trackRepository.save(new Track(Integer.parseInt(env.getProperty("trackId")),env.getProperty("trackName"),env.getProperty("trackComments")));
 	}*/
 
+	//Command Line Run method
 	@Override
 	public void run(String... args) throws Exception {
 		trackRepository.save(new Track(id,trackName,trackComment));

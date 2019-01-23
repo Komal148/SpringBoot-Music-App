@@ -1,5 +1,6 @@
 package com.stackroute.MuzixApp.Exceptions;
 
+//Track Already Exist EXecption class
 public class TrackAlreadyExistException extends Exception{
 
     private String message;
