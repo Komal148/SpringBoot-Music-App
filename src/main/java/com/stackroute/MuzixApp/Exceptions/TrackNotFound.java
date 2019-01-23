@@ -3,8 +3,7 @@ package com.stackroute.MuzixApp.Exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class TrackNotFound extends RuntimeException {
+public class TrackNotFound extends Exception {
     private String message;
     public TrackNotFound(String message)
     {

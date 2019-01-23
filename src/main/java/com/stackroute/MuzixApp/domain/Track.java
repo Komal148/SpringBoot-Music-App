@@ -1,18 +1,31 @@
 package com.stackroute.MuzixApp.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Track {
 
-    @Id
-    int trackId;
-    String trackName;
-    String trackComments;
 
-    public Track()
+    @Id
+    private int trackId;
+    private String trackName;
+    private String trackComments;
+
+    /*public Track()
     {
 
     }
@@ -47,7 +60,7 @@ public class Track {
     public void setTrackComments(String trackComments) {
         this.trackComments = trackComments;
     }
-
+*/
     @Override
     public String toString() {
         return "Track{" +
@@ -56,4 +69,5 @@ public class Track {
                 ", trackComments='" + trackComments + '\'' +
                 '}';
     }
+
 }
