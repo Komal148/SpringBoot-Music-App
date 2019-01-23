@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class HeadExceptionController {
+
     @ExceptionHandler(TrackNotFound.class)
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public @ResponseBody ErrorClass handleTracknotFoundException(final TrackNotFound e, final HttpServletRequest request){

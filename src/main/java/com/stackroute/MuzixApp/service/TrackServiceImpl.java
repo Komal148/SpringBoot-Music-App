@@ -35,7 +35,12 @@ public class TrackServiceImpl implements TrackService{
     }
 
     @Override
-    public List<Track> getAllTrack() {
+    public List<Track> getAllTrack() throws TrackNotFound {
+        List<Track> trackList = trackRepository.findAll();
+        if( trackList.isEmpty())
+        {
+            throw new TrackNotFound("Track Repository is empty");
+        }
         return trackRepository.findAll();
     }
 
