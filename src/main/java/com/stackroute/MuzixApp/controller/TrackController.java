@@ -20,7 +20,7 @@ import java.util.Optional;
 @Api(value="onlineMusicApp", description="Operations pertaining to Tracks in Muzix App")
 public class TrackController extends ResponseEntityExceptionHandler {
 
-    TrackService trackService;
+    private TrackService trackService;
 
     @Autowired
     public TrackController(TrackService trackService)
