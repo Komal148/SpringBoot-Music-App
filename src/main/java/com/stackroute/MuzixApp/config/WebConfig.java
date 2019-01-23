@@ -1,6 +1,6 @@
 package com.stackroute.MuzixApp.config;
 
-import org.h2.server.web.WebServlet;
+/*import org.h2.server.web.WebServlet;*/
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,11 +46,11 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 .contact(new Contact("Komal Rani", "https://springframework.guru/about/", "komalr984@gmail.com"))
                 .build();
     }
-    @Bean
+    /*@Bean
     ServletRegistrationBean h2ServletRegistration()
     {
         ServletRegistrationBean registrationBean= new ServletRegistrationBean(new WebServlet());
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
-    }
+    }*/
 }
