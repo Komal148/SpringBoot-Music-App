@@ -18,29 +18,35 @@ public class TrackServiceImpl implements TrackService{
     {
         this.trackRepository=trackRepository;
     }
+
+    //Save Track
     @Override
     public Track saveTrack(Track track) {
         Track savedTrack=trackRepository.save(track);
         return savedTrack;
     }
 
+    //Get All Track
     @Override
     public List<Track> getAllTrack() {
         return trackRepository.findAll();
     }
 
+    //delete track by Id
     @Override
     public boolean deleteTrack(int id) {
         trackRepository.deleteById(id);
         return true;
     }
 
+    //Update List of Tracks
     @Override
     public Track updateTrack(Track track) {
        Track updateTrack= trackRepository.save(track);
         return updateTrack;
     }
 
+    // Retrieve Track by Id
     @Override
     public Optional<Track> getTrackById(int id) {
 
@@ -51,6 +57,7 @@ public class TrackServiceImpl implements TrackService{
         return null;
     }
 
+    // Retrieve Track by Track name
     @Override
     public Track trackByName(String trackName) {
         return trackRepository.findByTrackName(trackName);

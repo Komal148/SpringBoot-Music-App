@@ -25,6 +25,9 @@ public class TrackController {
         this.trackService=trackService;
     }
 
+    /*
+    save Track method
+     */
     @ApiOperation(value = "Enter List of music")
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track)
@@ -42,6 +45,10 @@ public class TrackController {
         return responseEntity;
     }
 
+    /*
+    Retrieve all tracks method
+     */
+
     @ApiOperation(value = "View a list of available music",response = Iterable.class)
     @GetMapping("track")
     public ResponseEntity<List<Track>> getAllUser()
@@ -57,6 +64,9 @@ public class TrackController {
         return responseEntity;
     }
 
+    /*
+    Update Tracks method
+     */
     @ApiOperation(value = "Updated List of Tracks")
     @PutMapping("track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track)
@@ -90,6 +100,9 @@ public class TrackController {
         return responseEntity;
     }
 
+    /*
+    Get Track by Id Method
+     */
     @ApiOperation(value = "View a track by its Id")
     @GetMapping(value = "/track/{id}")
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String id)
@@ -105,6 +118,10 @@ public class TrackController {
         }
         return responseEntity;
     }
+
+    /*
+    Get Track by track name method
+     */
 
 //    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
     @ApiOperation(value = "View an available Track")
