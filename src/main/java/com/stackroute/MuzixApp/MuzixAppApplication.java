@@ -21,7 +21,7 @@ In this class Application Listener,Command Line Runner,@Value ,@PropertySource i
 
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
-public class MuzixAppApplication implements  ApplicationListener<ContextRefreshedEvent> , CommandLineRunner
+public class MuzixAppApplication //implements  /*ApplicationListener<ContextRefreshedEvent> , CommandLineRunner*/
 {
 	@Value("4")
 	private int id;
@@ -42,16 +42,16 @@ public class MuzixAppApplication implements  ApplicationListener<ContextRefreshe
 	}
 
 	//Appliction Event method
-
+/*
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 		trackRepository.save(new Track(Integer.parseInt(env.getProperty("trackId")),env.getProperty("trackName"),env.getProperty("trackComments")));
-	}
+	}*/
 
 	//Command Line Run method
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception {
 		trackRepository.save(new Track(id,trackName,trackComment));
-	}
+	}*/
 }
 
