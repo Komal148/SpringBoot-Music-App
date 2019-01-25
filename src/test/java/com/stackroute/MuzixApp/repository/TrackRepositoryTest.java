@@ -53,7 +53,7 @@ public class TrackRepositoryTest {
         public void testSaveTrackFailure(){
             Track testTrack = new Track(13,"Hope","ChainSmokers");
             trackRepository.save(track);
-            Track fetchUser = trackRepository.findById(track.getTrackId()).get();
+            Track fetchTrack = trackRepository.findById(track.getTrackId()).get();
             Assert.assertNotSame(testTrack,track);
         }
 

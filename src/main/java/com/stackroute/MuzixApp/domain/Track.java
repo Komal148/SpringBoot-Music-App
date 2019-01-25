@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
+/*import org.springframework.data.mongodb.core.mapping.Document;*/
 
 
-@Document
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
