@@ -87,10 +87,10 @@ public class TrackServiceImpl implements TrackService{
     // Retrieve Track by Track name
     @Override
     public Track trackByName(String trackName) throws TrackNotFound {
-        if( trackRepository.findByTrackName(trackName) == null )
+        if( trackRepository.findByTrackName(trackName) != null )
         {
-            throw new TrackNotFound("Track with this TrackName not Exist!!");
+            return trackRepository.findByTrackName(trackName);
         }
-        return trackRepository.findByTrackName(trackName);
+        throw new TrackNotFound("Track with this TrackName not Exist!!");
     }
 }

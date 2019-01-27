@@ -23,20 +23,20 @@ In this class Application Listener,Command Line Runner,@Value ,@PropertySource i
 @PropertySource("classpath:application.properties")
 public class MuzixAppApplication /*implements  ApplicationListener<ContextRefreshedEvent> , CommandLineRunner*/
 {
-	@Value("4")
-	private int id;
-
-	@Value("Despacito")
-	private String trackName;
-
-	@Value("JustinBieber")
-	private String trackComment;
-
-	@Autowired
-	TrackRepository trackRepository;
-
-	@Autowired
-	Environment env;
+//	@Value("4")
+//	private int id;
+//
+//	@Value("Despacito")
+//	private String trackName;
+//
+//	@Value("JustinBieber")
+//	private String trackComment;
+//
+//	@Autowired
+//	TrackRepository trackRepository;
+//
+//	@Autowired
+//	Environment env;
 	public static void main(String[] args) {
 		SpringApplication.run(MuzixAppApplication.class, args);
 	}

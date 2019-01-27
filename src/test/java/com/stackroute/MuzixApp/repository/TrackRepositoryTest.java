@@ -1,5 +1,6 @@
 package com.stackroute.MuzixApp.repository;
 
+import com.stackroute.MuzixApp.Exceptions.TrackNotFound;
 import com.stackroute.MuzixApp.domain.Track;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -66,11 +68,69 @@ public class TrackRepositoryTest {
 
             List<Track> list = trackRepository.findAll();
             Assert.assertEquals("Perfect",list.get(0).getTrackName());
+        }
 
-
-
+        @Test
+        public void updateTrackSuccess()
+        {
+            track.setTrackName("Hope");
+            trackRepository.save(track);
+            Assert.assertEquals("Hope",trackRepository.findById(track.getTrackId()).get().getTrackName());
 
         }
 
+        @Test
+        public void updateTrackFailure()
+        {
+            track.setTrackName("Hope");
+            trackRepository.save(track);
+            Assert.assertNotEquals("Hope1",trackRepository.findById(track.getTrackId()).get().getTrackName());
+
+        }
+
+        @Test
+        public void deleteTrackSuccess()
+        {
+            Track track1=new Track(10,"hope","chainsmoker");
+            trackRepository.save(track1);
+            trackRepository.delete(track1);
+            Assert.assertEquals(Optional.empty(),trackRepository.findById(10));
+        }
+        @Test
+        public void deleteTrackFailure()
+        {
+            Track track1=new Track(10,"hope","chainsmoker");
+            trackRepository.save(track1);
+            trackRepository.delete(track);
+            Assert.assertNotEquals(Optional.empty(),trackRepository.findById(10));
+        }
+
+        @Test
+        public void getTrackbyIdSuccess()
+        {
+            trackRepository.save(track);
+            Assert.assertEquals(101,trackRepository.findById(track.getTrackId()).get().getTrackId());
+        }
+
+        @Test
+        public void getTrackByIdFailure()
+        {
+            trackRepository.save(track);
+            Assert.assertNotEquals(102,trackRepository.findById(track.getTrackId()).get().getTrackId());
+        }
+
+        @Test
+        public void getTrackByName()
+        {
+            trackRepository.save(track);
+            Assert.assertEquals("Going",trackRepository.findById(track.getTrackId()).get().getTrackName());
+        }
+
+        @Test
+        public void getTrackByNameFailure()
+        {
+            trackRepository.save(track);
+            Assert.assertEquals("Going",trackRepository.findById(track.getTrackId()).get().getTrackName());
+        }
 
     }

@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 //Global Excption Handler Class
 @ControllerAdvice
-public class HeadExceptionController {
+public class HeadExceptionController{
 
     //Handling Exception of Track Not Found
     @ExceptionHandler(TrackNotFound.class)

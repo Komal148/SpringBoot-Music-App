@@ -35,7 +35,7 @@ public class TrackController extends ResponseEntityExceptionHandler {
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistException
     {
-        return new ResponseEntity<Track>(trackService.saveTrack(track),HttpStatus.OK);
+        return new ResponseEntity<Track>(trackService.saveTrack(track),HttpStatus.CREATED);
     }
     /*
     Retrieve all tracks method
@@ -76,8 +76,8 @@ public class TrackController extends ResponseEntityExceptionHandler {
     @GetMapping(value = "/track/{id}")
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String id) throws TrackNotFound
     {
-
-       return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.CREATED);}
+        trackService.getTrackById(Integer.parseInt(id));
+       return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(id)),HttpStatus.OK);}
 
     /*
     Get Track by track name method
@@ -88,6 +88,7 @@ public class TrackController extends ResponseEntityExceptionHandler {
     @GetMapping(value = "/trackN/{trackName}")
     public ResponseEntity<Track> getByTrackName(@PathVariable String trackName) throws TrackNotFound
     {
+        trackService.trackByName(trackName);
         return new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
     }
 

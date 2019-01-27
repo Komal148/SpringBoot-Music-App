@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 /*import org.springframework.data.mongodb.core.mapping.Document;*/
 
 
